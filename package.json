@@ -1,9 +1,7 @@
 {
   "name": "react-three-next",
-  "version": "2.0.0",
-  "authors": [
-    "Renaud ROHLINGER <https://twitter.com/onirenaud>"
-  ],
+  "version": "1.0.0",
+  "authors": ["Robin Steeman", "(react-three-next boilerplate) Renaud ROHLINGER <https://twitter.com/onirenaud>"],
   "license": "MIT",
   "private": true,
   "engines": {

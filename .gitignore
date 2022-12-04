@@ -38,5 +38,5 @@ package-lock.json
 
 report.*.json
 
-# .vscode Debugging
-.vscode/*-debug-profile
+.vscode
+.idea
