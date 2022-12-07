@@ -3,6 +3,8 @@ import Landing from '@/components/layout/Landing'
 import AboutMe from "@/components/layout/AboutMe"
 import {useEffect, useState} from "react"
 import { PageTypes, NavigationClassTypes } from "@/types"
+import MyWork from "@/components/layout/MyWork"
+import Contact from "@/components/layout/Contact"
 
 // Dynamic import is used to prevent a payload when the website starts, that includes threejs, r3f etc..
 // WARNING ! errors might get obfuscated by using dynamic import.
@@ -23,8 +25,10 @@ export default function Page(props) {
                 setNavigationClass('')
                 break
             case "contact":
+                setNavigationClass('move-left')
                 break
             case "myWork":
+                setNavigationClass('move-right')
                 break
         }
 
@@ -39,6 +43,8 @@ export default function Page(props) {
           <div className={`page ${navigationClass}`}>
             <Landing navigateTo={navigateTo} />
             <AboutMe navigateTo={navigateTo} />
+            <MyWork navigateTo={navigateTo} />
+            <Contact navigateTo={navigateTo} />
           </div>
       </div>
     )

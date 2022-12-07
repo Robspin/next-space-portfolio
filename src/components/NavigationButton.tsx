@@ -8,10 +8,9 @@ type Props = {
 
 const NavigationButton = ({ onClickHandler, text, classes }: Props) => {
     return (
-        <button onClick={onClickHandler} className={`button ${classes}`}>
-
+        <div onClick={onClickHandler} className={`button ${classes}`}>
             {text}
-        </button>
+        </div>
     )
 }
 

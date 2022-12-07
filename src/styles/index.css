@@ -34,6 +34,12 @@
     cursor: pointer;
     transition: all 1s ease;
     transition-delay: 0.3s;
+    user-select: none;
+  }
+
+  .button-vertical {
+    text-orientation: upright;
+    writing-mode: vertical-lr;
   }
 
   .page {
