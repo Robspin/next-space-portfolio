@@ -5,15 +5,64 @@
 @layer base {
   * {
     box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
   }
-  
+
   html,
   body,
   #__next {
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    overflow: hidden;
+    background: black;
+  }
+
+  .button {
+    position: absolute;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 16px;
+    background: none;
+    font-weight: bold;
+    padding: 10px 14px;
+    margin-inline: 20px;
+    word-spacing: normal;
+    letter-spacing: 5px;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: all 1s ease;
+    transition-delay: 0.3s;
+  }
+
+  .page {
+    transition: transform 0.6s ease;
+    will-change: transform;
+  }
+
+  .move-left {
+    -webkit-transform: translateX(-100vw);
+    transform: translateX(-100vw);
+  }
+
+  .move-center {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  .move-right {
+    -webkit-transform: translateX(100vw);
+    transform: translateX(100vw);
+  }
+
+  .move-up {
+    -webkit-transform: translateY(100vh);
+    transform: translateY(100vh);
+  }
+
+  .move-down {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
 }

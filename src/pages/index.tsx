@@ -1,5 +1,8 @@
 import dynamic from 'next/dynamic'
-import Instructions from '@/components/dom/Instructions'
+import Landing from '@/components/layout/Landing'
+import AboutMe from "@/components/layout/AboutMe"
+import {useEffect, useState} from "react"
+import { PageTypes, NavigationClassTypes } from "@/types"
 
 // Dynamic import is used to prevent a payload when the website starts, that includes threejs, r3f etc..
 // WARNING ! errors might get obfuscated by using dynamic import.
@@ -7,15 +10,38 @@ import Instructions from '@/components/dom/Instructions'
 // https://github.com/pmndrs/react-three-next/issues/49
 const Logo = dynamic(() => import('@/components/canvas/Logo'), { ssr: false })
 
-// Dom components go here
 export default function Page(props) {
-  return (
-    <Instructions>
-      This is a minimal starter for Nextjs + React-three-fiber and Threejs. Click on the{' '}
-      <span className='text-cyan-200'>atoms nucleus</span> to navigate to the{' '}
-      <span className='text-green-200'>/blob</span> page. OrbitControls are enabled by default.
-    </Instructions>
-  )
+    const [page, setPage] = useState<PageTypes>('landing')
+    const [navigationClass, setNavigationClass] = useState<NavigationClassTypes>('move-up')
+
+    const navigateTo = (page: PageTypes) => {
+        switch (page) {
+            case "landing":
+                setNavigationClass('move-up')
+                break
+            case "aboutMe":
+                setNavigationClass('')
+                break
+            case "contact":
+                break
+            case "myWork":
+                break
+        }
+
+    }
+
+    useEffect(() => {
+        console.log(page)
+    }, [])
+
+    return (
+      <div className="absolute">
+          <div className={`page ${navigationClass}`}>
+            <Landing navigateTo={navigateTo} />
+            <AboutMe navigateTo={navigateTo} />
+          </div>
+      </div>
+    )
 }
 
 // Canvas components go here
