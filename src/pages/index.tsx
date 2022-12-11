@@ -56,7 +56,7 @@ export default function Page(props) {
 // It will receive same props as the Page component (from getStaticProps, etc.)
 Page.canvas = (props) => (
     <>
-        <Logo scale={0.5} route='/blob' position-y={-1} />
+        <Logo scale={0.4} position-y={-1} />
         {/*<Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={100000} />*/}
         {/*<Stars count={3000} />*/}
         <MovingStars />

@@ -16,11 +16,42 @@
     height: 100vh;
     margin: 0;
     background: black;
+    line-height: 1.1;
   }
 
-  canvas {
-    /*background: yellow;*/
-    z-index: -1;
+  .heading {
+    font-size: 50px;
+    word-spacing: 12px;
+  }
+
+  .heading-name {
+    letter-spacing: 8px;
+    text-transform: uppercase;
+  }
+
+  .heading-effect {
+    position: relative;
+    color: transparent;
+    -webkit-text-stroke: 0.06vw #fff;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    word-spacing: 12px;
+  }
+
+  .heading-effect::after {
+    letter-spacing: 7px;
+    word-spacing: 12px;
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    color: #fff;
+    -webkit-text-stroke: 0vw #fff;
+    overflow: hidden;
+    animation: fill 8s linear infinite;
+    white-space: nowrap;
   }
 
   .button {
@@ -31,7 +62,6 @@
     background: none;
     font-weight: bold;
     padding: 10px 14px;
-    margin-inline: 20px;
     word-spacing: normal;
     letter-spacing: 5px;
     color: white;
@@ -43,8 +73,17 @@
   }
 
   .button-vertical {
+    top: 40vh;
     text-orientation: upright;
     writing-mode: vertical-lr;
+  }
+
+  .button-vertical-left {
+    left: 20px;
+  }
+
+  .button-vertical-right {
+    right: 20px;
   }
 
   .page {
@@ -75,5 +114,41 @@
   .move-down {
     -webkit-transform: translateY(0);
     transform: translateY(0);
+  }
+
+  @keyframes fill {
+    0%,
+    10%,
+    100% {
+      width: 0;
+    }
+    70%,
+    90% {
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 900px) {
+    .heading-effect, .heading {
+      font-size: 40px;
+    }
+    .button {
+      padding: 8px;
+    }
+    .button-vertical {
+      top: 24px;
+    }
+    .button-vertical-left {
+      left: 5px;
+    }
+    .button-vertical-right {
+      right: 5px;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .heading-effect::after {
+      white-space: pre-wrap;
+    }
   }
 }
