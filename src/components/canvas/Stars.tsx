@@ -10,8 +10,8 @@ const Stars = ({ startingZ }: { startingZ: number }) => {
 
     useFrame(({ camera}) => {
         starsRef.current.position.z += 0.08
-        // camera.rotation.z += 0.01
-        // starsRef.current.rotation.z += 0.0001
+        // camera.rotation.z += 1
+        starsRef.current.rotation.z -= 0.0003
 
         if (starsRef.current.position.z > 400) {
             starsRef.current.position.z = -800

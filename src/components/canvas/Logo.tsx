@@ -3,7 +3,7 @@ import { useMemo, useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Line, useCursor } from '@react-three/drei'
 
-export default function Logo({ ...props }) {
+export default function Logo({ clickHandler, ...props }) {
     const mesh = useRef(null)
     const [hovered, hover] = useState(false)
 
@@ -21,7 +21,7 @@ export default function Logo({ ...props }) {
     })
 
     return (
-        <group ref={mesh} {...props} onClick={() => console.log('clicked')} onPointerOver={() => hover(true)} onPointerOut={() => hover(false)}>
+        <group ref={mesh} {...props} onClick={() => clickHandler()} onPointerOver={() => hover(true)} onPointerOut={() => hover(false)}>
           {/* @ts-ignore */}
           <Line worldUnits points={points} color={hovered ? hoverColor : mainColor} lineWidth={0.15} />
           {/* @ts-ignore */}
