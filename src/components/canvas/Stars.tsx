@@ -8,9 +8,10 @@ const Stars = ({ startingZ }: { startingZ: number }) => {
     const starSprite = useLoader(TextureLoader, starPng.src)
     const starsRef = useRef<undefined | any>()
 
-    useFrame(() => {
+    useFrame(({ camera}) => {
         starsRef.current.position.z += 0.08
-        starsRef.current.rotation.z += 0.0001
+        // camera.rotation.z += 0.01
+        // starsRef.current.rotation.z += 0.0001
 
         if (starsRef.current.position.z > 400) {
             starsRef.current.position.z = -800
