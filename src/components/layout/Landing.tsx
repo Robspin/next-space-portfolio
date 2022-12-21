@@ -4,6 +4,7 @@ import PageContainer from "@/components/layout/PageContainer"
 import { PageProps } from "@/types"
 import Scene from "@/components/canvas/Scene"
 import { useState } from "react"
+import * as gsap from "gsap"
 
 const Logo = dynamic(() => import('@/components/canvas/Logo'), { ssr: false })
 
@@ -13,9 +14,11 @@ type TechWords = {
     text: string
     x: number
     y: number
+    id: string
 }
 
 const pickRandomNumber = (number: number) => Math.ceil(Math.random() * number)
+const pickRandomFromRange = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min)
 
 const Landing = ({ navigateTo }: PageProps) => {
     const [techWords, setTechWords] = useState<TechWords[]>([])
@@ -24,20 +27,22 @@ const Landing = ({ navigateTo }: PageProps) => {
         const randomTech = devTechnologies[pickRandomNumber(devTechnologies.length - 1)]
 
         const coinFlip = pickRandomNumber(2)
-        const innerWidth = (window.innerWidth / coinFlip)
-
-        const widthOffset = coinFlip > 1 ? innerWidth - 350 : innerWidth + 350
-        const innerHeight = window.innerHeight - 420
+        const rangeHorizontal = (window.innerWidth / 2)
+        const rangeVertical = window.innerHeight - 250
+        const id = `${randomTech} - ${pickRandomFromRange(0, 50000)}`
 
         const techWord: TechWords = {
             text: randomTech,
-            x: pickRandomNumber(widthOffset),
-            y: pickRandomNumber(innerHeight) + 280
+            x: coinFlip > 1 ? pickRandomFromRange(rangeHorizontal + 170, window.innerWidth) - 70 : pickRandomFromRange(10, rangeHorizontal - 150),
+            y: pickRandomFromRange(50, rangeVertical) + 220,
+            id
         }
 
-        console.log(coinFlip, innerWidth, widthOffset)
-
         setTechWords(prev => [...prev, techWord])
+
+        setTimeout(() => {
+            document.getElementById(id).remove()
+        }, 2000)
     }
 
     return (
@@ -51,7 +56,9 @@ const Landing = ({ navigateTo }: PageProps) => {
                     </Scene>
                 </div>
             </div>
-            {techWords.map((techWord, i) => (<div key={i} style={{ top: techWord.y, left: techWord.x }} className="absolute select-none" >{techWord.text}</div>))}
+            {/*<div className={`bg-white right-0 bottom-0 absolute opacity-50`} style={{ top: window.innerHeight - 420, left: (window.innerWidth / 2) + 100 }} />*/}
+            {/*<div className={`bg-white left-0 bottom-0 absolute opacity-50`} style={{ top: window.innerHeight - 420, right: (window?.innerWidth / 2) + 100 }} />*/}
+            {techWords.map((techWord, i) => (<div key={i} id={techWord.id} style={{ top: techWord.y, left: techWord.x }} className="absolute select-none animate-[techWordAnimation_2s_ease-out]" >{techWord.text}</div>))}
             <NavigationButton onClickHandler={() => navigateTo('aboutMe')} text="about me" classes="bottom-[50px]"/>
         </PageContainer>
     )
