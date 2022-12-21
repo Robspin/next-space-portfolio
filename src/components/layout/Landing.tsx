@@ -4,11 +4,10 @@ import PageContainer from "@/components/layout/PageContainer"
 import { PageProps } from "@/types"
 import Scene from "@/components/canvas/Scene"
 import { useState } from "react"
-import * as gsap from "gsap"
 
 const Logo = dynamic(() => import('@/components/canvas/Logo'), { ssr: false })
 
-const devTechnologies = ['ThreeJS', 'Deno', 'Fresh', 'Python', 'Node', 'Tailwind', 'Typescript', 'Docker']
+const devTechnologies = ['ThreeJS', 'Deno', 'Fresh', 'Python', 'Node', 'Tailwind', 'Typescript', 'Docker', 'React', 'Next', 'React Native']
 
 type TechWords = {
     text: string
@@ -28,7 +27,7 @@ const Landing = ({ navigateTo }: PageProps) => {
 
         const coinFlip = pickRandomNumber(2)
         const rangeHorizontal = (window.innerWidth / 2)
-        const rangeVertical = window.innerHeight - 250
+        const rangeVertical = window.innerHeight - 280
         const id = `${randomTech} - ${pickRandomFromRange(0, 50000)}`
 
         const techWord: TechWords = {
@@ -39,10 +38,7 @@ const Landing = ({ navigateTo }: PageProps) => {
         }
 
         setTechWords(prev => [...prev, techWord])
-
-        setTimeout(() => {
-            document.getElementById(id).remove()
-        }, 2000)
+        setTimeout(() => document.getElementById(id).remove(), 2000)
     }
 
     return (
@@ -56,8 +52,6 @@ const Landing = ({ navigateTo }: PageProps) => {
                     </Scene>
                 </div>
             </div>
-            {/*<div className={`bg-white right-0 bottom-0 absolute opacity-50`} style={{ top: window.innerHeight - 420, left: (window.innerWidth / 2) + 100 }} />*/}
-            {/*<div className={`bg-white left-0 bottom-0 absolute opacity-50`} style={{ top: window.innerHeight - 420, right: (window?.innerWidth / 2) + 100 }} />*/}
             {techWords.map((techWord, i) => (<div key={i} id={techWord.id} style={{ top: techWord.y, left: techWord.x }} className="absolute select-none animate-[techWordAnimation_2s_ease-out]" >{techWord.text}</div>))}
             <NavigationButton onClickHandler={() => navigateTo('aboutMe')} text="about me" classes="bottom-[50px]"/>
         </PageContainer>

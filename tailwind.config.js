@@ -7,14 +7,14 @@ module.exports = {
       keyframes: {
         techWordAnimation: {
           '0%': {
-            transform: 'scale(0.8)'
+            transform: 'scale(0.5) translateY(0)'
           },
           '0%, 100%': {
             opacity: 0,
           },
           '15%': {
             opacity: 100,
-            transform: 'translateY(0) scale(1)'
+            transform: 'scale(1)'
           },
           '100%': {
             transform: 'translateY(100px)'
